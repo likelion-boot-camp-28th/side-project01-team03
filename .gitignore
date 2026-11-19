@@ -4,6 +4,7 @@
 !.idea/modules.xml
 out/
 *.class
+.idea
 
 # OS
 .DS_Store
