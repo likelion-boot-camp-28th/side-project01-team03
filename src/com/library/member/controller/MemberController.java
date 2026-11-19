@@ -1,6 +1,8 @@
-package com.library.member;
+package com.library.member.controller;
 
 import com.library.common.InputUtil;
+import com.library.member.view.Member;
+import com.library.member.model.service.MemberService;
 
 /** [회원 도메인] 콘솔 메뉴 */
 public class MemberController {

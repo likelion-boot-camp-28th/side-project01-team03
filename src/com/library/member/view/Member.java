@@ -1,4 +1,4 @@
-package com.library.member;
+package com.library.member.view;
 
 public class Member {
 

@@ -1,4 +1,7 @@
-package com.library.member;
+package com.library.member.model.service;
+
+import com.library.member.view.Member;
+import com.library.member.view.MemberRepository;
 
 import java.util.List;
 import java.util.Optional;
