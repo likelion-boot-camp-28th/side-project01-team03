@@ -26,6 +26,6 @@ public interface BookService {
     Bookdto delete(int id);
 }
 
-//Todo 1.책 전체 조회 , 2. 책 등록  3. 특정키워드 책 조회  4. 책 삭제
+//Todo 1.책 전체 조회 , 2. 책 등록  3. 번호로 찾기  4. 특정 키워드 책 조회  5. 책 삭제
 
 
