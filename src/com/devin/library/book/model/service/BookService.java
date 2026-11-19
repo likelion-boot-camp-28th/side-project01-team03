@@ -9,23 +9,8 @@ import java.util.Optional;
  */
 public class BookService {
 
-    private final BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
-    public Book register(String title, String author) {
-        return bookRepository.save(new Book(title, author));
-    }
-
-    public List<Book> findAll() {
-        return bookRepository.findAll();
-    }
-
-    public Optional<Book> findById(Long id) {
-        return bookRepository.findById(id);
-    }
 
     // TODO: 제목/저자 검색, 수정, 삭제 등
 }
