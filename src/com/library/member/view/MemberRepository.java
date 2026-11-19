@@ -1,4 +1,4 @@
-package com.library.member;
+package com.library.member.view;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

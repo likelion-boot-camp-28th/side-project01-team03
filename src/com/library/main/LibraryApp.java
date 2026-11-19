@@ -7,9 +7,9 @@ import com.library.common.InputUtil;
 import com.library.loan.LoanController;
 import com.library.loan.LoanRepository;
 import com.library.loan.LoanService;
-import com.library.member.MemberController;
-import com.library.member.MemberRepository;
-import com.library.member.MemberService;
+import com.library.member.controller.MemberController;
+import com.library.member.view.MemberRepository;
+import com.library.member.model.service.MemberService;
 
 /**
  * [메인 도메인] 객체 조립 + 메인 메뉴 루프.

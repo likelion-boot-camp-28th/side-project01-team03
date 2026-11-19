@@ -1,7 +1,7 @@
 package com.library.loan;
 
 import com.library.book.BookService;
-import com.library.member.MemberService;
+import com.library.member.model.service.MemberService;
 
 import java.util.List;
 
