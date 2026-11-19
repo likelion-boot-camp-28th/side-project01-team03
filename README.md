@@ -7,17 +7,17 @@ Java 21 / 순수 Java(IntelliJ) / 콘솔 입출력 / 메모리 저장소
 - 터미널:
   ```bash
   javac -encoding UTF-8 -d out $(find src -name "*.java")
-  java -cp out com.library.main.Main
+  java -cp out com.devin.library.main.Main
   ```
 
 ## 패키지 구조 & 담당
 | 도메인 | 패키지 | 담당 | 주요 클래스 |
 |---|---|---|---|
-| 메인 | `com.library.main` | TBD | `Main`, `LibraryApp`(객체 조립·메인 메뉴) |
-| 책 | `com.library.book` | TBD | `Book`, `BookRepository`, `BookService`, `BookController` |
-| 회원 | `com.library.member` | TBD | `Member`, `MemberRepository`, `MemberService`, `MemberController` |
-| 대출 | `com.library.loan` | TBD | `Loan`, `LoanRepository`, `LoanService`, `LoanController` |
-| 공통 | `com.library.common` | 공동 | `InputUtil`(Scanner는 이것만 사용) |
+| 메인 | `com.devin.library.main` | TBD | `Main`, `LibraryApp`(객체 조립·메인 메뉴) |
+| 책 | `com.devin.library.book` | TBD | `Book`, `BookRepository`, `BookService`, `BookController` |
+| 회원 | `com.devin.library.member` | TBD | `Member`, `MemberRepository`, `MemberService`, `MemberController` |
+| 대출 | `com.devin.library.loan` | TBD | `Loan`, `LoanRepository`, `LoanService`, `LoanController` |
+| 공통 | `com.devin.library.common` | 공동 | `InputUtil`(Scanner는 이것만 사용) |
 
 ## 전체 흐름
 ```
@@ -39,7 +39,7 @@ Main → LibraryApp (메인 메뉴)
 
 ## 도메인 설명
 
-### 1. 메인 (`com.library.main`)
+### 1. 메인 (`com.devin.library.main`)
 프로그램 시작점이고, 다른 도메인들을 연결합니다.
 - `Main`: `main()` 메서드만 있습니다.
 - `LibraryApp`: Repository → Service → Controller를 생성해 서로 연결하고, 메인 메뉴(도서, 회원, 대출, 종료)를 반복해서 보여줍니다.
@@ -51,7 +51,7 @@ Main → LibraryApp (메인 메뉴)
 - [ ] `common/InputUtil` 관리
 - [ ] 통합 테스트
 
-### 2. 책 (`com.library.book`)
+### 2. 책 (`com.devin.library.book`)
 도서 정보를 관리합니다.
 - `Book`: `id`, `title`, `author`, `available`(대출 가능 여부)
 - 구현됨: 등록, 전체 목록
@@ -62,7 +62,7 @@ Main → LibraryApp (메인 메뉴)
 - [ ] 삭제 (대출 중인 책은 삭제 막기)
 - [ ] 대출 가능한 책만 보기
 
-### 3. 회원 (`com.library.member`)
+### 3. 회원 (`com.devin.library.member`)
 회원 정보를 관리합니다.
 - `Member`: `id`, `name`, `phone`
 - 구현됨: 가입, 전체 목록
@@ -73,7 +73,7 @@ Main → LibraryApp (메인 메뉴)
 - [ ] 정보 수정
 - [ ] 탈퇴
 
-### 4. 대출 (`com.library.loan`)
+### 4. 대출 (`com.devin.library.loan`)
 책과 회원을 이어서 대출과 반납 기록을 관리합니다. 로직이 가장 많은 도메인입니다.
 - `Loan`: `bookId`, `memberId`, `loanDate`(대출일), `dueDate`(반납 예정일), `returnDate`(반납일, `null`이면 대출 중)
 - 구현됨: 대출 내역 보기
