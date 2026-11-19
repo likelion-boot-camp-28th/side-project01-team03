@@ -1,8 +1,7 @@
 package com.library.main;
 
-import com.library.book.BookController;
-import com.library.book.BookRepository;
-import com.library.book.BookService;
+import com.library.book.controller.BookController;
+import com.library.book.model.service.BookService;
 import com.library.common.InputUtil;
 import com.library.member.MemberController;
 import com.library.member.MemberRepository;

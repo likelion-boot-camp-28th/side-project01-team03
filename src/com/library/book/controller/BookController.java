@@ -1,5 +1,6 @@
-package com.library.book;
+package com.library.book.controller;
 
+import com.library.book.model.service.BookService;
 import com.library.common.InputUtil;
 
 /** [책 도메인] 콘솔 메뉴 */
