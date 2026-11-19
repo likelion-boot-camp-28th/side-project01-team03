@@ -1,0 +1,10 @@
+# IntelliJ (프로젝트 설정 일부만 공유)
+.idea/*
+!.idea/misc.xml
+!.idea/modules.xml
+out/
+*.class
+
+# OS
+.DS_Store
+Thumbs.db
