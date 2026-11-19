@@ -14,8 +14,8 @@ Java 21 / 순수 Java(IntelliJ) / 콘솔 입출력 / 메모리 저장소
 | 도메인 | 패키지 | 담당 | 주요 클래스 |
 |---|---|---|---|
 | 메인 | `com.devin.library.main` | TBD | `Main`, `LibraryApp`(객체 조립·메인 메뉴) |
-| 책 | `com.devin.library.book` | TBD | `Book`, `BookRepository`, `BookService`, `BookController` |
-| 회원 | `com.devin.library.member` | TBD | `Member`, `MemberView`, `MemberServiceImpl`, `MemberController` |
+| 책 | `com.devin.library.book` | TBD | `Book`, `BookRepository`, `BookServiceImpl`, `BookController` |
+| 회원 | `com.devin.library.member` | TBD | `Member`, `MemberRepository`, `MemberService`, `MemberController` |
 | 대출 | `com.devin.library.loan` | TBD | `Loan`, `LoanRepository`, `LoanService`, `LoanController` |
 | 공통 | `com.devin.library.common` | 공동 | `InputUtil`(Scanner는 이것만 사용) |
 
@@ -34,7 +34,7 @@ Main → LibraryApp (메인 메뉴)
 |---|---|---|
 | Entity | `Book`, `Member`, `Loan` | 데이터를 담는 클래스 |
 | Repository | `BookRepository` | `Map`에 저장, 조회, 삭제 (DB 대신 메모리) |
-| Service | `BookService` | 실제 규칙과 로직 |
+| Service | `BookServiceImpl` | 실제 규칙과 로직 |
 | Controller | `BookController` | 콘솔 메뉴 출력, 입력받아 Service 호출 |
 
 ## 도메인 설명
@@ -88,7 +88,7 @@ Main → LibraryApp (메인 메뉴)
 
 ## 협업 규칙
 - **자기 도메인 패키지만 수정**합니다. 다른 도메인이 필요하면 그 도메인의 `Service` 메서드를 호출합니다.
-- 대출 도메인은 `BookService`, `MemberServiceImpl`를 사용하므로 두 서비스의 **public 메서드 시그니처 변경 시 팀에 공유**합니다.
+- 대출 도메인은 `BookServiceImpl`, `MemberService`를 사용하므로 두 서비스의 **public 메서드 시그니처 변경 시 팀에 공유**합니다.
 - `common`, `main` 수정은 팀에 공유 후 진행합니다.
 - `System.in`용 `Scanner`를 새로 만들지 말고 `InputUtil`을 사용합니다.
 
