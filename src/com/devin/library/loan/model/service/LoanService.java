@@ -47,18 +47,24 @@ public class LoanService {
     /**
      * 도서 대출 반납 메서드
      *
+     * @param memberId 대출자 ID
      * @param loanId 대출 ID
      * @return 반납 처리된 대출 정보 (반납일 포함)
      * @throws LibraryException 존재하지 않는 대출 ID일 경우
+     * @throws LibraryException 본인의 대출 도서가 아닐 경우
      * @throws LibraryException 이미 반납된 대출인 경우
      */
-    public LoanDto returnBook(long loanId) {
+    public LoanDto returnBook(String memberId, long loanId) {
 
         LoanDto loan = loanRepository.findById(loanId);
 
         /* 대출 기록이 없을 때 */
         if (loan == null) {
             throw new LibraryException("존재하지 않는 대출 기록입니다");
+        }
+
+        if(!memberId.equals(loan.getMemberId())) {
+            throw new LibraryException("본인의 대출 도서만 반납할 수 있습니다");
         }
 
         /* 대출이 이미 반납 되었을 때 */
@@ -109,5 +115,27 @@ public class LoanService {
     public List<LoanDto> getLoansByMember(String memberId) {
         return loanRepository.findByMemberId(memberId);
     }
+
+
+    /**
+     * 회원의 미반납 대출 목록 조회
+     * @param memberId 대출자 ID
+     * @return 미반납 대출 목록, 없으면 빈 List
+     */
+    public List<LoanDto> getActiveLoansByMember(String memberId) {
+
+        List<LoanDto> activeLoans = new ArrayList<>();
+
+        for (LoanDto loan : loanRepository.findByMemberId(memberId)) {
+            if (!loan.isReturned()) {
+                activeLoans.add(loan);
+            }
+        }
+
+        return activeLoans;
+
+    }
+
+
 
 }

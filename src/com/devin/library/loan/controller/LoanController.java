@@ -1,5 +1,6 @@
 package com.devin.library.loan.controller;
 
+import com.devin.library.common.LibraryException;
 import com.devin.library.loan.model.dto.LoanDto;
 import com.devin.library.loan.model.repository.LoanRepository;
 import com.devin.library.loan.model.service.LoanService;
@@ -10,17 +11,18 @@ public class LoanController {
 
     private final LoanService loanService = new LoanService(new LoanRepository());
 
-    private void printLoans(List<LoanDto> loans, String emptyMessage) {
+    private boolean printLoans(List<LoanDto> loans, String emptyMessage) {
 
         if (loans.isEmpty()) {
             System.out.println(emptyMessage);
-            return;
+            return false;
         }
 
         for (LoanDto loan : loans) {
             System.out.println(loan);
         }
 
+        return true;
     }
 
     /**
@@ -47,6 +49,31 @@ public class LoanController {
         printLoans(loanService.getLoansByMember(memberId), memberId + "회원의 대출 기록이 없습니다");
     }
 
+    /**
+     * 내 미반납 대출 내역 출력 메서드
+     * @param memberId 대출자 ID
+     * @return 내 미반납 대출 내역
+     */
+    public boolean showMyActiveLoans(String memberId) {
+        return printLoans(loanService.getActiveLoansByMember(memberId), "반납할 도서가 없습니다");
+    }
+
+    /**
+     * 반납 메서드
+     * @param memberId 대출자 ID
+     * @param loanId 대출 ID
+     */
+    public void showReturnBook(String memberId, long loanId) {
+        try {
+            LoanDto loan =  loanService.returnBook(memberId, loanId);
+            System.out.println("반납 완료 : " + loan.getBookName() + " (반납일 " + loan.getReturnDate() + ")");
+
+        } catch (LibraryException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
 
 
 }
