@@ -5,7 +5,6 @@ import com.devin.library.book.model.service.BookServiceImpl;
 import com.devin.library.book.view.View;
 import com.devin.library.common.InputUtil;
 import com.devin.library.common.LibraryException;
-import com.devin.library.loan.model.service.LoanService;
 import com.devin.library.loan.view.LoanView;
 import com.devin.library.member.controller.MemberController;
 import com.devin.library.member.model.repository.MemberRepository;
@@ -13,23 +12,18 @@ import com.devin.library.member.model.service.MemberService;
 import com.devin.library.member.model.service.MemberServiceImpl;
 import com.devin.library.member.view.MemberView;
 
-import java.util.PrimitiveIterator;
-
 
 public class LibraryApp {
 
     // 도서 저장소는 하나만 생성해서 도서 관리/대출 관리가 함께 사용
-    private BookService bookService = new BookServiceImpl();
-    private View bookView = new View(bookService);
-    private MemberRepository memberRepository = new MemberRepository();
-    private MemberService memberService = new MemberServiceImpl(memberRepository);
-    private MemberView memberView = new MemberView();
-    private MemberController memberController = new MemberController(memberService, memberView);
-    private LoanView loanView = new LoanView(bookService);
+    private final BookService bookService = new BookServiceImpl();
+    private final View bookView = new View(bookService);
+    private final MemberRepository memberRepository = new MemberRepository();
+    private final MemberService memberService = new MemberServiceImpl(memberRepository);
+    private final MemberView memberView = new MemberView();
+    private final MemberController memberController = new MemberController(memberService, memberView);
+    private final LoanView loanView = new LoanView(bookService);
 
-    public LibraryApp() {
-
-    }
 
     public void run() {
 
