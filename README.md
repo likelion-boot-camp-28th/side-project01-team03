@@ -15,7 +15,7 @@ Java 21 / 순수 Java(IntelliJ) / 콘솔 입출력 / 메모리 저장소
 |---|---|---|---|
 | 메인 | `com.devin.library.main` | TBD | `Main`, `LibraryApp`(객체 조립·메인 메뉴) |
 | 책 | `com.devin.library.book` | TBD | `Book`, `BookRepository`, `BookServiceImpl`, `BookController` |
-| 회원 | `com.devin.library.member` | TBD | `Member`, `MemberRepository`, `MemberService`, `MemberController` |
+| 회원 | `com.devin.library.member` | TBD | `MemberDto`, `MemberRepository`, `MemberService`, `MemberController` |
 | 대출 | `com.devin.library.loan` | TBD | `Loan`, `LoanRepository`, `LoanService`, `LoanController` |
 | 공통 | `com.devin.library.common` | 공동 | `InputUtil`(Scanner는 이것만 사용) |
 
@@ -32,7 +32,7 @@ Main → LibraryApp (메인 메뉴)
 
 | 계층 | 예시 | 역할 |
 |---|---|---|
-| Entity | `Book`, `Member`, `Loan` | 데이터를 담는 클래스 |
+| Entity | `Book`, `MemberDto`, `Loan` | 데이터를 담는 클래스 |
 | Repository | `BookRepository` | `Map`에 저장, 조회, 삭제 (DB 대신 메모리) |
 | Service | `BookServiceImpl` | 실제 규칙과 로직 |
 | Controller | `BookController` | 콘솔 메뉴 출력, 입력받아 Service 호출 |
@@ -64,7 +64,7 @@ Main → LibraryApp (메인 메뉴)
 
 ### 3. 회원 (`com.devin.library.member`)
 회원 정보를 관리합니다.
-- `Member`: `id`, `name`, `phone`
+- `MemberDto`: `id`, `name`, `phone`
 - 구현됨: 가입, 전체 목록
 
 **TODO**
