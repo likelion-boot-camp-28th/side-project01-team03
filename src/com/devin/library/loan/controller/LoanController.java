@@ -1,5 +1,6 @@
 package com.devin.library.loan.controller;
 
+import com.devin.library.book.model.service.BookService;
 import com.devin.library.common.LibraryException;
 import com.devin.library.loan.model.dto.LoanDto;
 import com.devin.library.loan.model.repository.LoanRepository;
@@ -10,6 +11,11 @@ import java.util.List;
 public class LoanController {
 
     private final LoanService loanService = new LoanService(new LoanRepository());
+    private final BookService bookService;   // 도서 조회용 (LibraryApp에서 Book 쪽과 같은 객체를 주입받음)
+
+    public LoanController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     private boolean printLoans(List<LoanDto> loans, String emptyMessage) {
 
