@@ -25,7 +25,7 @@ public class MemberView {
          * */
     }
 
-    /// 회원가입 -> controller -> service -> controller
+    /// 회원가입 -> controller -> service -> repository -> controller
     public MemberDto signupPage() {
         System.out.println("--- 회원가입 ---");
         String id = InputUtil.readLine("아이디 : ");     // 아이디 입력
@@ -33,7 +33,7 @@ public class MemberView {
         return new MemberDto(id, pw); // dto에 담아서 signupPage를 씀
     }
 
-    /// 로그인 -> controller -> service -> controller
+    /// 로그인 -> controller -> service -> -> repository -> controller
     public MemberDto loginPage() {
         System.out.println("--- 로그인 ---");
         String id = InputUtil.readLine("아이디 : ");     // 아이디 입력
