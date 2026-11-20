@@ -3,10 +3,7 @@ package com.devin.library.book.model.service;
 import com.devin.library.book.model.dto.Bookdto;
 
 import java.awt.print.Book;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +32,7 @@ public class BookServiceImpl implements BookService {
         Bookdto book = new Bookdto(nextId, title, author, false);
         nextId++;
         books.add(book);        // 중복id가 들어갈수있으니 나중에 조치
+        saveFile();
         return book;
     }
 
@@ -63,13 +61,14 @@ public class BookServiceImpl implements BookService {
     public String delete(int id) {
 
         Bookdto book = findById(id);
-        if(book == null){
+        if (book == null) {
             return "없는 도서 번호입니다";
         }
-        if(book.isBorrowed()){
+        if (book.isBorrowed()) {
             return "대출중입니다";
         }
         books.remove(book);
+        saveFile();
         return id + "번호의 책이 삭제되었습니다";
     }
 
@@ -98,6 +97,26 @@ public class BookServiceImpl implements BookService {
                 br.close();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    private void saveFile() {
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter(new FileWriter(FilePath));
+            for (Bookdto book : books) {
+                bw.write(book.getId() + "," + book.getTilte() + "," + book.getAuthor() + "," + book.isBorrowed() + "\n");
+            }
+        } catch (IOException e) {
+            System.out.println("파일 저장 실패");
+        } finally {
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
