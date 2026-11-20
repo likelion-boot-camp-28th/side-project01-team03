@@ -12,7 +12,7 @@ public interface BookService {
 
     // 2. 책 등록
 
-    Bookdto register(int id, String title, String author);
+    Bookdto register(String title, String author);
 
     // 3. 번호로 찾기
 
@@ -23,7 +23,7 @@ public interface BookService {
     List<Bookdto> search(String keyword);
 
     // 5. 책 삭제
-    Bookdto delete(int id);
+    String delete(int id);
 }
 
 //Todo 1.책 전체 조회 , 2. 책 등록  3. 번호로 찾기  4. 특정 키워드 책 조회  5. 책 삭제
