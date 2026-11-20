@@ -3,11 +3,22 @@ package com.devin.library.main;
 import com.devin.library.book.view.View;
 import com.devin.library.common.InputUtil;
 import com.devin.library.common.LibraryException;
+import com.devin.library.member.controller.MemberController;
+import com.devin.library.member.model.repository.MemberRepository;
+import com.devin.library.member.model.service.MemberService;
+import com.devin.library.member.model.service.MemberServiceImpl;
+import com.devin.library.member.view.MemberView;
+
+import java.util.PrimitiveIterator;
 
 
 public class LibraryApp {
 
-    private     View bookView = new View();
+    private View bookView = new View();
+    private MemberRepository memberRepository = new MemberRepository();
+    private MemberService memberService = new MemberServiceImpl(memberRepository);
+    private MemberView memberView = new MemberView();
+    private MemberController memberController = new MemberController(memberService, memberView);
 
     public LibraryApp() {
 
@@ -30,7 +41,7 @@ public class LibraryApp {
                 int menu = InputUtil.readInt("메뉴 선택 : ");
 
                 switch (menu) {
-                    case 1 -> System.out.println("아직 준비중입니다.");
+                    case 1 -> memberController.run();
                     case 2 -> bookView.show();
                     case 3 -> System.out.println("아직 준비중입니다.");
                     case 0 -> {
