@@ -13,6 +13,30 @@ public class InputUtil {
     private InputUtil() {
     }
 
+    public static String readNonBlank(String prompt) {
+        while (true) {
+            String input = readLine(prompt);
+            if (input.isEmpty()) {
+                System.out.println("값을 입력해주세요.");
+            }else {
+                return input;
+            }
+        }
+    }
+
+    public static boolean readYesNo(String prompt) {
+        while (true) {
+            String input = readLine(prompt);
+            if (input.equalsIgnoreCase("y")) {
+                return true;
+            } else if (input.equalsIgnoreCase("n")) {
+                return false;
+            } else {
+                System.out.println("y 또는 n을 입력해주세요.");
+            }
+        }
+    }
+
     public static String readLine(String prompt) {
         System.out.print(prompt);
         return SCANNER.nextLine().trim();
