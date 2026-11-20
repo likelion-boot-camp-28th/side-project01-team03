@@ -1,5 +1,6 @@
 package com.devin.library.loan.controller;
 
+import com.devin.library.book.model.dto.Bookdto;
 import com.devin.library.book.model.service.BookService;
 import com.devin.library.common.LibraryException;
 import com.devin.library.loan.model.dto.LoanDto;
@@ -72,6 +73,12 @@ public class LoanController {
     public void showReturnBook(String memberId, long loanId) {
         try {
             LoanDto loan =  loanService.returnBook(memberId, loanId);
+
+            Bookdto book = bookService.findById(loan.getBookId());
+            if(book != null) {
+                book.setBorrowed(false);
+            }
+
             System.out.println("반납 완료 : " + loan.getBookName() + " (반납일 " + loan.getReturnDate() + ")");
 
         } catch (LibraryException e) {
@@ -80,6 +87,32 @@ public class LoanController {
 
 
     }
+
+    /**
+     * 도서 대출 메서드
+     * @param memberId 대출자 ID
+     * @param bookId 책 ID
+     */
+    public void loanBook(String memberId, int bookId) {
+        try {
+            Bookdto book = bookService.findById(bookId);
+
+            if(book == null) {
+                System.out.println("없는 도서 번호 입니다");
+                return;
+            }
+
+            LoanDto loan = loanService.loanBook(memberId, bookId, book.getTilte(), book.getAuthor());
+            book.setBorrowed(true);
+
+            System.out.println("대출 완료 : " + loan.getBookName() + " (반납 예정일 : " + loan.getDueDate() + ")");
+
+        } catch (LibraryException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
 
 }
