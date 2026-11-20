@@ -27,7 +27,11 @@ public class LoanView {
                     System.out.println("도서 대출 준비 중");
                     break;
                 case 2: // 도서 반납
-                    System.out.println("도서 반납 준비 중");
+                    if(!loanController.showMyActiveLoans(loginMemberId)) {
+                        break;
+                    }
+                    long loanId = InputUtil.readLong("반납할 대출 ID : ");
+                    loanController.showReturnBook(loginMemberId, loanId);
                     break;
                 case 3: // 전체 대출 목록
                     loanController.showAllLoans();
