@@ -13,6 +13,17 @@ public class InputUtil {
     private InputUtil() {
     }
 
+    public static String readNonBlank(String prompt) {
+        while (true) {
+            String input = readLine(prompt);
+            if (input.isEmpty()) {
+                System.out.println("값을 입력해주세요.");
+            }else {
+                return input;
+            }
+        }
+    }
+
     public static String readLine(String prompt) {
         System.out.print(prompt);
         return SCANNER.nextLine().trim();
