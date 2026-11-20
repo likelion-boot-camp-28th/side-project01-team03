@@ -1,11 +1,17 @@
 package com.devin.library.book.view;
 
 import com.devin.library.book.controller.BookController;
+import com.devin.library.book.model.service.BookService;
 import com.devin.library.common.InputUtil;
 
 public class View {
 
-    private BookController bookController = new BookController();
+    private final BookController bookController;
+
+    public View(BookService bookService) {
+        this.bookController = new BookController(bookService);
+    }
+
     public void show() {
         while (true) {
             String menuText = """

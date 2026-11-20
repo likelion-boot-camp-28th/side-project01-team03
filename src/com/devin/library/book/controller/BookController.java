@@ -2,12 +2,16 @@ package com.devin.library.book.controller;
 
 import com.devin.library.book.model.dto.Bookdto;
 import com.devin.library.book.model.service.BookService;
-import com.devin.library.book.model.service.BookServiceImpl;
 
 import java.util.List;
 
 public class BookController {
-    private BookService bookService = new BookServiceImpl();
+    private final BookService bookService;
+
+    // BookService는 LibraryApp에서 한 번만 생성해 주입받음 (대출 기능과 같은 도서 저장소 공유)
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     public void registerBook(String title, String author) { //책등록 출력
         Bookdto book = bookService.register(title, author);

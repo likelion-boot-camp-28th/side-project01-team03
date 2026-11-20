@@ -1,11 +1,16 @@
 package com.devin.library.loan.view;
 
+import com.devin.library.book.model.service.BookService;
 import com.devin.library.common.InputUtil;
 import com.devin.library.loan.controller.LoanController;
 
 public class LoanView {
 
-    private final LoanController loanController = new LoanController();
+    private final LoanController loanController;
+
+    public LoanView(BookService bookService) {
+        this.loanController = new LoanController(bookService);
+    }
 
     public void show(String loginMemberId) {
         while (true) {

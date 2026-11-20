@@ -1,5 +1,7 @@
 package com.devin.library.main;
 
+import com.devin.library.book.model.service.BookService;
+import com.devin.library.book.model.service.BookServiceImpl;
 import com.devin.library.book.view.View;
 import com.devin.library.common.InputUtil;
 import com.devin.library.common.LibraryException;
@@ -16,12 +18,14 @@ import java.util.PrimitiveIterator;
 
 public class LibraryApp {
 
-    private View bookView = new View();
+    // 도서 저장소는 하나만 생성해서 도서 관리/대출 관리가 함께 사용
+    private BookService bookService = new BookServiceImpl();
+    private View bookView = new View(bookService);
     private MemberRepository memberRepository = new MemberRepository();
     private MemberService memberService = new MemberServiceImpl(memberRepository);
     private MemberView memberView = new MemberView();
     private MemberController memberController = new MemberController(memberService, memberView);
-    private LoanView loanView = new LoanView();
+    private LoanView loanView = new LoanView(bookService);
 
     public LibraryApp() {
 
