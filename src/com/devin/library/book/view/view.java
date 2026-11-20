@@ -35,6 +35,11 @@ public class view {
                 case 4 :
                     bookController.findAll();
                     int id = InputUtil.readInt("삭제할 도서 번호");
+                    bookController.delete(id);
+                    break;
+                case 0 :
+                        return;
+                default : System.out.println("잘못된 메뉴입니다.");
             }
 
         }

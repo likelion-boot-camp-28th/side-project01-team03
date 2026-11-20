@@ -70,7 +70,7 @@ public class BookServiceImpl implements BookService {
             return "대출중입니다";
         }
         books.remove(book);
-        return id + "번호가 삭제되었습니다";
+        return id + "번호의 책이 삭제되었습니다";
     }
 
     private void loadFile() {
@@ -79,13 +79,13 @@ public class BookServiceImpl implements BookService {
         try {
             br = new BufferedReader(new FileReader(FilePath));
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                //System.out.println(line);
 
                 String[] data = line.split(",");
                 int id = Integer.parseInt(data[0]);
                 String title = data[1];
                 String author = data[2];
-                boolean borrowed = Boolean.parseBoolean(data[4]);
+                boolean borrowed = Boolean.parseBoolean(data[3]);
 
                 books.add(new Bookdto(id, title, author, borrowed));
             }
