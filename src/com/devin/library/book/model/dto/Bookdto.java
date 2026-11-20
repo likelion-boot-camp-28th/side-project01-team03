@@ -30,12 +30,11 @@ public class Bookdto {
     @Override
     public String toString() {
         String status = borrowed ? "대출중" : "대출가능";
-        return "Bookdto{" +
-                "id=" + id +
-                ", tilte='" + tilte + '\'' +
-                ", author='" + author + '\'' +
-                ", borrowed=" + status +
-                '}';
+        return
+                "번호 = " + id +
+                ", 제목 = " + tilte +
+                ", 저자 = " + author +
+                ", 대출현황 = " + status ;
     }
 }
 
