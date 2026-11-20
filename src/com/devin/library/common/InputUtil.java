@@ -42,11 +42,16 @@ public class InputUtil {
         return SCANNER.nextLine().trim();
     }
 
-    public static int readInt(String prompt) {
+    public static int readInt(String prompt, int min , int max) {
         while (true) {
             String input = readLine(prompt);
             try {
-                return Integer.parseInt(input);
+                int num = Integer.parseInt(input);
+                if(num < min || num > max){
+                    System.out.println(min + " ~ " + max + " 사이의 숫자를 입력해주세요 ");
+                    continue;
+                }
+                return num;
             } catch (NumberFormatException e) {
                 System.out.println("숫자를 입력해주세요.");
             }

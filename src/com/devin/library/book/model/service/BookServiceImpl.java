@@ -2,21 +2,26 @@ package com.devin.library.book.model.service;
 
 import com.devin.library.book.model.dto.Bookdto;
 
+import java.awt.print.Book;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-
+    public String FilePath = "src/com/devin/library/data/books.txt";
     private List<Bookdto> books = new ArrayList<>();
-    private int nextId;
+    private int nextId = 1;
 
     public BookServiceImpl() {
-        int maxId = 0; // 번호 겹침 방지
+        loadFile();
         for (Bookdto b : books) {
-            if (b.getId() > maxId) {
-                maxId = b.getId();
+            if (b.getId() >= nextId) {
+                nextId = b.getId();
             }
-            nextId = maxId + 1;
+            nextId = b.getId() + 1;
         }
     }
 
@@ -26,7 +31,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override // 2. 책 등록
-    public Bookdto register(int id, String title, String author) {
+    public Bookdto register(String title, String author) {
         Bookdto book = new Bookdto(nextId, title, author, false);
         nextId++;
         books.add(book);        // 중복id가 들어갈수있으니 나중에 조치
@@ -55,10 +60,45 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override // 5. 책 삭제하기
-    public Bookdto delete(int id) {
-        // 예외 조건문 수정 예정
+    public String delete(int id) {
+
         Bookdto book = findById(id);
-            books.remove(book);
-            return book;
+        if(book == null){
+            return "없는 도서 번호입니다";
         }
+        if(book.isBorrowed()){
+            return "대출중입니다";
+        }
+        books.remove(book);
+        return id + "번호가 삭제되었습니다";
+    }
+
+    private void loadFile() {
+        BufferedReader br = null;
+        String line = null;
+        try {
+            br = new BufferedReader(new FileReader(FilePath));
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+
+                String[] data = line.split(",");
+                int id = Integer.parseInt(data[0]);
+                String title = data[1];
+                String author = data[2];
+                boolean borrowed = Boolean.parseBoolean(data[4]);
+
+                books.add(new Bookdto(id, title, author, borrowed));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("파일이 없습니다.");
+        } catch (IOException e) {
+            System.out.println("파일을 읽지 못했습니다");
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
