@@ -1,7 +1,6 @@
 package com.devin.library.member.model.repository;
 
 import com.devin.library.member.model.dto.MemberDto;
-import com.devin.library.member.view.MemberView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +12,8 @@ public class MemberRepository {
     Map<String, MemberDto> members = new HashMap<>();
 
     // 저장, 반환값없음 메서드, service에서 저장 판정 시 사용(회원가입)
-        public void saveMember(MemberDto memberDto) {
-            members.put(memberDto.getId(), memberDto);  // 키값:id, 값:id,pw
+        public void saveMember(MemberDto memberInfo) {
+            members.put(memberInfo.getId(), memberInfo);  // 키값:id, 값:id,pw
         }
 
     // 동일한 id 있는지 확인 메서드(회원가입)
