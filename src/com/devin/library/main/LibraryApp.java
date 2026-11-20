@@ -42,6 +42,8 @@ public class LibraryApp {
 
             } catch (LibraryException e) {
                 System.out.println(e.getMessage());
+            } catch (RuntimeException e) {
+                System.out.println("알 수 없는 오류가 발생했습니다: " + e.getMessage());
             }
         }
     }
