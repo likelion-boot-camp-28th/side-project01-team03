@@ -73,6 +73,7 @@ public class LoanDto {
 
     /**
      * 반납 여부 메서드
+     *
      * @return 반납 했으면 true, 대출중이면 false
      */
     public boolean isReturned() {
@@ -81,6 +82,7 @@ public class LoanDto {
 
     /**
      * 반납 처리 메서드
+     *
      * @param returnDate 실제 반납일
      */
     public void markReturned(LocalDate returnDate) {
@@ -89,12 +91,12 @@ public class LoanDto {
 
     /**
      * 대출 ID set 메서드
+     *
      * @param loanId 대출 ID
      */
     public void setLoanId(long loanId) {
         this.loanId = loanId;
     }
-
 
 
 }
