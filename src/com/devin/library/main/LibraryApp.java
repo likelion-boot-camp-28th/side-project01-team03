@@ -1,11 +1,13 @@
 package com.devin.library.main;
 
+import com.devin.library.book.view.view;
 import com.devin.library.common.InputUtil;
 import com.devin.library.common.LibraryException;
 
 
 public class LibraryApp {
 
+    private view bookView = new view();
 
     public LibraryApp() {
 
@@ -29,7 +31,7 @@ public class LibraryApp {
 
                 switch (menu) {
                     case 1 -> System.out.println("아직 준비중입니다.");
-                    case 2 -> System.out.println("아직 준비중입니다.");
+                    case 2 -> bookView.show();
                     case 3 -> System.out.println("아직 준비중입니다.");
                     case 0 -> {
                         System.out.println("프로그램을 종료합니다.");
