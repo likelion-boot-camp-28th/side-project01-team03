@@ -7,14 +7,14 @@ public class LoanView {
 
     private final LoanController loanController = new LoanController();
 
-    public void show() {
+    public void show(String loginMemberId) {
         while (true) {
             String menu = """
                     ===== 대출 관리 =====
                     1. 도서 대출
                     2. 도서 반납
                     3. 전체 대출 목록
-                    4. 회원별 대출 내역
+                    4. 내 대출 내역
                     5. 연체 목록
                     0. 뒤로가기
                     ====================
@@ -23,22 +23,22 @@ public class LoanView {
             int menuInput = InputUtil.readInt("메뉴 선택 : ");
 
             switch (menuInput) {
-                case 1:
+                case 1: // 도서 대출
                     System.out.println("도서 대출 준비 중");
                     break;
-                case 2:
+                case 2: // 도서 반납
                     System.out.println("도서 반납 준비 중");
                     break;
-                case 3:
-                    System.out.println("전체 대출 목록 준비 중");
+                case 3: // 전체 대출 목록
+                    loanController.showAllLoans();
                     break;
-                case 4:
-                    System.out.println("회원별 대출 내열 준비 중");
+                case 4: // 내 대출 내역
+                    loanController.showLoansByMember(loginMemberId);
                     break;
-                case 5:
-                    System.out.println("연체 목록 준비 중");
+                case 5: // 연체 목록
+                    loanController.showOverdueLoans();
                     break;
-                case 0:
+                case 0: // 뒤로가기
                     return;
                 default:
                     System.out.println("잘못된 메뉴입니다");
