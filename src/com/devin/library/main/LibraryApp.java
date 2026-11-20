@@ -1,6 +1,6 @@
 package com.devin.library.main;
 
-import com.devin.library.book.view.view;
+import com.devin.library.book.view.View;
 import com.devin.library.common.InputUtil;
 import com.devin.library.common.LibraryException;
 import com.devin.library.loan.model.service.LoanService;
