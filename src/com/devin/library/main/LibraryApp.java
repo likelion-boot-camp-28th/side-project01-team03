@@ -1,13 +1,13 @@
 package com.devin.library.main;
 
-import com.devin.library.book.view.view;
+import com.devin.library.book.view.View;
 import com.devin.library.common.InputUtil;
 import com.devin.library.common.LibraryException;
 
 
 public class LibraryApp {
 
-    private view bookView = new view();
+    private View bookView = new View();
 
     public LibraryApp() {
 
