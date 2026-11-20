@@ -59,16 +59,14 @@ public class LoanDto {
 
     @Override
     public String toString() {
-        return "LoanDto{" +
-                "loanId=" + loanId +
-                ", memberId='" + memberId + '\'' +
-                ", bookId=" + bookId +
-                ", bookName='" + bookName + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", loanDate=" + loanDate +
-                ", dueDate=" + dueDate +
-                ", returnDate=" + returnDate +
-                '}';
+        String status = isReturned() ? "반납 (" + returnDate + ")" : "대출중";
+
+        return "대출번호 = " + loanId +
+                ", 도서 = " + bookName + "(" + bookAuthor + ")" +
+                ", 대출자 = " + memberId +
+                ", 대출일 = " + loanDate +
+                ", 반납예정일 = " + dueDate +
+                ", 상태 = " + status;
     }
 
     /**
