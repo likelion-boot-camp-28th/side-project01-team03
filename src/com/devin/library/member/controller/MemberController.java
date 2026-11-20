@@ -35,7 +35,7 @@ public class MemberController {
         }
     }
 
-    public boolean signup(MemberDto memberInfo) {
+    public boolean signup() {
         //signup id,pw 갖고와서 판정/저장/출력
 //        try {
 //            memberService.signup(memberInfo);
