@@ -3,7 +3,7 @@ package com.devin.library.book.view;
 import com.devin.library.book.controller.BookController;
 import com.devin.library.common.InputUtil;
 
-public class view {
+public class View {
 
     private BookController bookController = new BookController();
     public void show() {
@@ -43,9 +43,5 @@ public class view {
             }
 
         }
-
-
     }
-
-
 }
