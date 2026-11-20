@@ -7,7 +7,7 @@ import com.devin.library.member.view.MemberView;
 // view 입력값 -> service 전달 -> try/catch로 성공/실패 -> view 출력 전달
 
 // 중복아이디 찾기 -> repository에 아이디가 있는지로 판단한다.(Repository-맵-키값id로 찾는 메서드 사용)
-// (있음 -> Controller에서 try-catch  -> Service에서 중복검사 >
+// 있음 -> Controller에서 try-catch  -> Service에서 중복검사 >
 // 있음 -> throw Exception(무슨익셉션으로?) -> catch view출력문("중복아이디 있어요") Fail
 // 없음 -> repository 저장메서드 사용 -> try 마지막 View출력문("가입되었습니다.) Success
 
@@ -35,11 +35,19 @@ public class MemberController {
         }
     }
 
-    public boolean signup() {
+    public boolean signup(MemberDto memberInfo) {
+        //signup id,pw 갖고와서 판정/저장/출력
+//        try {
+//            memberService.signup(memberInfo);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         return false;
     }
 
     public MemberDto login() {
+        // login id, pw갖고와서 판정/출력
         return null;
     }
 

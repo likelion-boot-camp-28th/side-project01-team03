@@ -24,7 +24,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean signup(MemberDto member) {
+    public boolean signup(MemberDto memberInfo) {
+        // try catch
+        // 중복검사
+//        if(memberRepository.existById(memberInfo))
+//            memberRepository.existById(memberInfo);
+        // 있음
+        // 없음
         return false;
     }
 
