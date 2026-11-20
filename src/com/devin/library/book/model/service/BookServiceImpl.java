@@ -106,7 +106,7 @@ public class BookServiceImpl implements BookService {
         try {
             bw = new BufferedWriter(new FileWriter(FilePath));
             for (Bookdto book : books) {
-                bw.write(book.getId() + "," + book.getTilte() + "," + book.getAuthor() + "," + book.isBorrowed());
+                bw.write(book.getId() + "," + book.getTilte() + "," + book.getAuthor() + "," + book.isBorrowed() + "\n");
             }
         } catch (IOException e) {
             System.out.println("파일 저장 실패");

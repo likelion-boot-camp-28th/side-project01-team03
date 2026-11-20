@@ -17,7 +17,7 @@ public class View {
                 0. 뒤로 가기
                 """;
             System.out.println(menuText);
-            int menu = InputUtil.readInt("메뉴 선택");
+            int menu = InputUtil.readInt("메뉴 선택 :");
 
             switch (menu){
                 case 1 :
@@ -34,7 +34,7 @@ public class View {
                     break;
                 case 4 :
                     bookController.findAll();
-                    int id = InputUtil.readInt("삭제할 도서 번호");
+                    int id = InputUtil.readInt("삭제할 도서 번호 :");
                     bookController.delete(id);
                     break;
                 case 0 :
