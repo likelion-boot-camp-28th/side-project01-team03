@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 public class LoanDto {
 
-    private String loanId;          // 대출 id
+    private long loanId;            // 대출 id
     private String memberId;        // 대출자 id
-    private String bookId;          // 책 id
+    private int bookId;             // 책 id
     private String bookName;        // 책 이름
     private String bookAuthor;      // 책 저자
     private LocalDate loanDate;     // 대출일
@@ -16,8 +16,7 @@ public class LoanDto {
     public LoanDto() {
     }
 
-    public LoanDto(String loanId, String memberId, String bookId, String bookName, String bookAuthor, LocalDate loanDate, LocalDate dueDate) {
-        this.loanId = loanId;
+    public LoanDto(String memberId, int bookId, String bookName, String bookAuthor, LocalDate loanDate, LocalDate dueDate) {
         this.memberId = memberId;
         this.bookId = bookId;
         this.bookName = bookName;
@@ -26,7 +25,7 @@ public class LoanDto {
         this.dueDate = dueDate;
     }
 
-    public String getLoanId() {
+    public long getLoanId() {
         return loanId;
     }
 
@@ -34,7 +33,7 @@ public class LoanDto {
         return memberId;
     }
 
-    public String getBookId() {
+    public int getBookId() {
         return bookId;
     }
 
@@ -61,9 +60,9 @@ public class LoanDto {
     @Override
     public String toString() {
         return "LoanDto{" +
-                "loanId='" + loanId + '\'' +
+                "loanId=" + loanId +
                 ", memberId='" + memberId + '\'' +
-                ", bookId='" + bookId + '\'' +
+                ", bookId=" + bookId +
                 ", bookName='" + bookName + '\'' +
                 ", bookAuthor='" + bookAuthor + '\'' +
                 ", loanDate=" + loanDate +
@@ -81,11 +80,19 @@ public class LoanDto {
     }
 
     /**
-     * 반납 처리
+     * 반납 처리 메서드
      * @param returnDate 실제 반납일
      */
     public void markReturned(LocalDate returnDate) {
         this.returnDate = returnDate;
+    }
+
+    /**
+     * 대출 ID set 메서드
+     * @param loanId 대출 ID
+     */
+    public void setLoanId(long loanId) {
+        this.loanId = loanId;
     }
 
 
