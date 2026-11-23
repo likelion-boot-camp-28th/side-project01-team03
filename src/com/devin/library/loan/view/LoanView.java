@@ -23,7 +23,7 @@ public class LoanView {
         while (true) {
             System.out.println();
             String menu = """
-                 ============== 대출 관리 ===============
+                 \u001B[36m============== 대출 관리 ===============\u001B[0m
                     
                  1. 도서 대출
                  2. 도서 반납
