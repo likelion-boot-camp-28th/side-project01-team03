@@ -19,8 +19,8 @@ import com.devin.library.member.view.MemberView;
 public class MemberController {
 
     // service, view 연결용
-    private MemberService memberService;
-    private MemberView memberView;
+    private final MemberService memberService;
+    private final MemberView memberView;
     private String loginId = null;  // run 밖에서 연결?
 
     public MemberController(MemberService memberService, MemberView memberView) {
@@ -38,7 +38,7 @@ public class MemberController {
                     break;
                 // 실패해도 이전 로그인이 null이 되지않게 하려면 "성공했을 때만 loginMember를 바꾸기"
                 case "2": {
-                    if(loginId!=null){
+                    if (loginId != null) {
                         memberView.memberFailure("이미 로그인 되어있습니다.");             // 로그인 막기
                         break;
                     }
@@ -59,8 +59,11 @@ public class MemberController {
     /// 회원가입 페이지
     public void signup() {
         try {
-            MemberDto memberInfo = memberView.signupPage();             // 회원가입페이지 부르고 값 저장
-            memberService.signup(memberInfo);                           // 값을 서비스에서 검사
+            String signId = memberView.signupId();             // 아이디
+            memberService.duplicateCheck(signId);               // 중복체크
+            String signPw = memberView.signupPw();                  // 비번
+            MemberDto memberInfo = new MemberDto(signId, signPw);       // 둘다 넣기
+            memberService.signup(memberInfo);                           // 저장
             memberView.memberSuccess("회원가입 성공!!");      // 성공 시 view성공페이지 출력
 
         } catch (LibraryException e) {

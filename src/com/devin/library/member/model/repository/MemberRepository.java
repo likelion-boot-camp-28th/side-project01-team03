@@ -11,17 +11,17 @@ public class MemberRepository {
 
     Map<String, MemberDto> members = new HashMap<>();
 
-    // 저장, 반환값없음 메서드, service에서 저장 판정 시 사용(회원가입)
-    public void saveMember(MemberDto memberInfo) {
-        members.put(memberInfo.getId(), memberInfo);  // 키값:id, 값:id,pw
-    }
-
     // 동일한 id 있는지 확인 메서드(회원가입)
-    public boolean existById(MemberDto memberId) {
-        boolean result = members.keySet().contains(memberId.getId());
+    public boolean existById(String memberId) {
+        boolean result = members.keySet().contains(memberId);
         // members.containsKey(memberDto.getId());   // 한번에 물어보는 코드
         // contains가 알아서 순환해서 반복문 쓸 필요x
         return result;      // 결과값이 true(있음)인지 false(없음)인지 돌려준다.
+    }
+
+    // 저장, 반환값없음 메서드, service에서 저장 판정 시 사용(회원가입)
+    public void saveMember(MemberDto memberInfo) {
+        members.put(memberInfo.getId(), memberInfo);  // 키값:id, 값:id,pw
     }
 
     // id로 비번 가져오기 메서드(로그인)
