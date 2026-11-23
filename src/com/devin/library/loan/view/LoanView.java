@@ -29,7 +29,8 @@ public class LoanView {
 
             switch (menuInput) {
                 case 1: // 도서 대출
-                    System.out.println("도서 대출 준비 중");
+                    int bookId = InputUtil.readInt("대출할 도서 번호 : ");
+                    loanController.loanBook(loginMemberId, bookId);
                     break;
                 case 2: // 도서 반납
                     if(!loanController.showMyActiveLoans(loginMemberId)) {
