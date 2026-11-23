@@ -12,6 +12,8 @@ import com.devin.library.member.model.service.MemberService;
 import com.devin.library.member.model.service.MemberServiceImpl;
 import com.devin.library.member.view.MemberView;
 
+import java.util.NoSuchElementException;
+
 
 public class LibraryApp {
 
@@ -54,6 +56,9 @@ public class LibraryApp {
 
             } catch (LibraryException e) {
                 System.out.println(e.getMessage());
+            } catch (NoSuchElementException e) {
+                System.out.println("입력이 종료되어 프로그램을 끝냅니다.");
+                return;
             } catch (RuntimeException e) {
                 System.out.println("알 수 없는 오류가 발생했습니다: " + e.getMessage());
             }
