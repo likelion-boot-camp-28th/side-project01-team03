@@ -28,20 +28,26 @@ public class MemberView {
     }
 
     /// 회원가입 -> controller -> service -> repository -> controller
-    public MemberDto signupPage() {
+    /// 아이디 중복확인용으로 분리
+    public String signupId() {
         System.out.println();
         System.out.println("--- 회원가입 ---");
-        String id = InputUtil.readLine("아이디 : ");     // 아이디 입력
-        String pw = InputUtil.readLine("비밀번호 : ");  // 비번 입력
-        return new MemberDto(id, pw); // dto에 담아서 signupPage를 씀
+        // 아이디 입력
+        return InputUtil.readNonBlank("아이디 : "); // 메서드로 전달
+    }
+
+    /// 비번
+    public String signupPw() {
+        // 비번 입력
+        return InputUtil.readNonBlank("비밀번호 : "); // 메서드로 전달
     }
 
     /// 로그인 -> controller -> service -> -> repository -> controller
     public MemberDto loginPage() {
         System.out.println();
         System.out.println("--- 로그인 ---");
-        String id = InputUtil.readLine("아이디 : ");     // 아이디 입력
-        String pw = InputUtil.readLine("비밀번호 : ");  // 비번 입력
+        String id = InputUtil.readNonBlank("아이디 : ");     // 아이디 입력
+        String pw = InputUtil.readNonBlank("비밀번호 : ");  // 비번 입력
         return new MemberDto(id, pw);   // dto에 담아서 loginPage를 씀
     }
 
