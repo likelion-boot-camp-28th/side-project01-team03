@@ -35,7 +35,6 @@ public class LibraryApp {
 
                 // 로그인 상태에 따라 제목을 다르게 출력
                 if (loginMemberId == null) {
-                    System.out.println(" * 로그인 시 대출 가능합니다. *");
                     System.out.println("==== 도서 대출 프로그램 ====");
                 } else {
                     System.out.println("==== 도서 대출 프로그램 (" + loginMemberId + " 님 이용중) ====");
