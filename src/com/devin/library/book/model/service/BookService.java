@@ -1,31 +1,31 @@
 package com.devin.library.book.model.service;
 
+import com.devin.library.book.model.dto.Bookdto;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-/**
- * [책 도메인] 비즈니스 로직.
- * 대출 도메인(LoanService)이 findById / 대출 상태 변경을 사용하므로 메서드 시그니처 변경 시 공유해주세요.
- */
-public class BookService {
+public interface BookService {
 
-    private final BookRepository bookRepository;
+    // 1. 책 전체 조회
+    List<Bookdto> findAll(); //책 전체 조회
 
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    // 2. 책 등록
 
-    public Book register(String title, String author) {
-        return bookRepository.save(new Book(title, author));
-    }
+    Bookdto register(String title, String author);
 
-    public List<Book> findAll() {
-        return bookRepository.findAll();
-    }
+    // 3. 번호로 찾기
 
-    public Optional<Book> findById(Long id) {
-        return bookRepository.findById(id);
-    }
+    Bookdto findById(int id);
 
-    // TODO: 제목/저자 검색, 수정, 삭제 등
+    // 4. 특정 키워드 책 조회
+
+    List<Bookdto> search(String keyword);
+
+    // 5. 책 삭제
+    String delete(int id);
 }
+
+//Todo 1.책 전체 조회 , 2. 책 등록  3. 번호로 찾기  4. 특정 키워드 책 조회  5. 책 삭제
+
+
