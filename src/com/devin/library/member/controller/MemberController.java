@@ -21,7 +21,7 @@ public class MemberController {
     // service, view 연결용
     private MemberService memberService;
     private MemberView memberView;
-    private String loginMember = null;  // loginMember run 밖에서 연결
+    private String loginId = null;  // run 밖에서 연결?
 
     public MemberController(MemberService memberService, MemberView memberView) {
         this.memberService = memberService;
@@ -38,22 +38,26 @@ public class MemberController {
                     break;
                 // 실패해도 이전 로그인이 null이 되지않게 하려면 "성공했을 때만 loginMember를 바꾸기"
                 case "2": {
+                    if(loginId!=null){
+                        memberView.memberFailure("이미 로그인 되어있습니다.");             // 로그인 막기
+                        break;
+                    }
                     String temp = login();
                     if (temp != null) {
-                        loginMember = temp;
+                        loginId = temp;
                     }
                     break;     // 로그인 실패해도 계속 기억?
                 }
                 case "0":
-                    return loginMember;   // 메인에 정보를 계속 전달
+                    return loginId;   // 메인에 정보를 계속 전달
                 default:
-                    memberView.memberFailure("번호만 입력해주세요.");
+                    memberView.memberFailure("잘못된 메뉴입니다.");
             }
         }
     }
 
     /// 회원가입 페이지
-    public boolean signup() {
+    public void signup() {
         try {
             MemberDto memberInfo = memberView.signupPage();             // 회원가입페이지 부르고 값 저장
             memberService.signup(memberInfo);                           // 값을 서비스에서 검사
@@ -62,7 +66,6 @@ public class MemberController {
         } catch (LibraryException e) {
             memberView.memberFailure(e.getMessage());                   // 실패 시 view 실패페이지 출력
         }
-        return true; // 로그인 확인됨
     }
 
     /// 로그인 페이지
