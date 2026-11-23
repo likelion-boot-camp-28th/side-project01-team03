@@ -16,7 +16,7 @@ public class View {
         while (true) {
             System.out.println();
             String menuText = """
-                ============== 도서 관리 ===============
+                \u001B[36m============== 도서 관리 ===============\u001B[0m
                 
                 1. 도서 등록
                 2. 도서 목록

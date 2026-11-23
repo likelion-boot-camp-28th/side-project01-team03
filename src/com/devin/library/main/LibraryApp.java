@@ -34,9 +34,9 @@ public class LibraryApp {
                 System.out.println();
 
                 // 로그인 상태에 따라 제목을 다르게 출력
-                System.out.println("========== 도서 대출 프로그램 ==========");
+                System.out.println("\u001B[36m========== 도서 대출 프로그램 ==========\u001B[0m");
                 if (loginMemberId != null) {
-                    System.out.println(loginMemberId + " 님 이용중");
+                    System.out.println("\u001B[33m" + loginMemberId + " 님 이용중\u001B[0m");
                 }
 
                 String menuText = """

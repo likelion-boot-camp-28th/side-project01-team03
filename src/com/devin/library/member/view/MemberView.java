@@ -12,7 +12,7 @@ public class MemberView {
     public String memberMenu() {
         System.out.println();
         String menu = """
-                ============== 회원 관리 ===============
+                \u001B[36m============== 회원 관리 ===============\u001B[0m
                 
                 1. 회원 가입
                 2. 로그인
