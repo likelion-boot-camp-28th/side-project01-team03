@@ -40,13 +40,14 @@ public class MemberController {
                 case "2": {
                     if (loginId != null) {
                         memberView.memberFailure("이미 로그인 되어있습니다.");             // 로그인 막기
-                        break;
+                        break;                      // 회원메뉴로
                     }
                     String temp = login();
                     if (temp != null) {
                         loginId = temp;
+                        return loginId;             // 메인 메뉴로
                     }
-                    break;     // 로그인 실패해도 계속 기억?
+                    break;                          // 회원 메뉴로
                 }
                 case "0":
                     return loginId;   // 메인에 정보를 계속 전달
