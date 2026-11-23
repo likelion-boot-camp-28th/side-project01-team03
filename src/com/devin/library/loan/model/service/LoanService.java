@@ -97,14 +97,14 @@ public class LoanService {
         return overdueBook;
     }
 
-    /**
-     * 전체 대출 목록 메서드
-     *
-     * @return 전체 대출 목록, 없으면 빈 List
-     */
-    public List<LoanDto> getAllLoans() {
-        return loanRepository.findAll();
-    }
+//    /**
+//     * 전체 대출 목록 메서드
+//     *
+//     * @return 전체 대출 목록, 없으면 빈 List
+//     */
+//    public List<LoanDto> getAllLoans() {
+//        return loanRepository.findAll();
+//    }
 
     /**
      * 해당 회원의 대출 목록 메서드
