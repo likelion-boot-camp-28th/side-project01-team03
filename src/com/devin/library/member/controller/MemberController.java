@@ -13,6 +13,8 @@ import com.devin.library.member.view.MemberView;
 
 // 로그인 판정 -> Repository-Map에서 id(키값)으로 아이디비번 가져오기 -> 꺼낸 후 판단(null(id 다름), 비번 다름, 전부 동일)
 
+// id만 전달용으로 String 쓰기
+
 public class MemberController {
 
     // service, view 연결용
@@ -24,13 +26,23 @@ public class MemberController {
         this.memberView = memberView;
     }
 
-    public void run() {
-        String menu = memberView.memberMenu(); // 멤버 메뉴 불러오기
-        switch (menu) {
-            case "1": signup(); break;
-            case "2": login(); break;
-            case "0": return;
-            default: System.out.println("번호만 입력해주세요.");
+    public String run() {
+        String loginMember = null;
+        while (true) {
+            String menu = memberView.memberMenu(); // 멤버 메뉴 불러오기
+            switch (menu) {
+                case "1": signup(); break;
+                // 실패해도 이전 로그인이 null이 되지않게 하려면 "성공했을 때만 loginMember를 바꾸기"
+                case "2" : {
+                    String temp = login();
+                    if (temp != null) {
+                        loginMember = temp;
+                    }
+                    break;     // 로그인 실패해도 계속 기억?
+                }
+                case "0": return loginMember;   // 메인에 정보를 계속 전달
+                default: memberView.memberFailure("번호만 입력해주세요.");
+            }
         }
     }
 
@@ -46,12 +58,20 @@ public class MemberController {
                 memberView.memberFailure(e.getMessage());                   // 실패 시 view 실패페이지 출력
             }
         }
-        return true; // 왜 true더라
+        return true; // 로그인 확인됨
     }
 
-    public MemberDto login() {
+    public String login() {
         // login id, pw갖고와서 판정/출력
-        return null;
+        try {
+            MemberDto memberInfo = memberView.loginPage();                  // 로그인페이지 부르고 값 저장
+            String loginMember = memberService.login(memberInfo.getId(), memberInfo.getPw());    // 값을 서비스에서 검사하고 돌려받은 값을 회원정보로 넣기
+            memberView.memberSuccess("로그인 성공!!");            // 성공 시 view성공페이지 출력
+            return loginMember;                                             // id 돌려주기
+        } catch (IllegalArgumentException e) {
+            memberView.memberFailure(e.getMessage());                      // 실패 시 view 실패페이지 출력
+            return null;
+        }
     }
 
 }

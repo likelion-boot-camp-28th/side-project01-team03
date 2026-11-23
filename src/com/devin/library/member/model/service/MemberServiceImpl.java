@@ -2,7 +2,6 @@ package com.devin.library.member.model.service;
 
 /*
  * [회원 도메인] 비즈니스 로직.
- * 대출 도메인(LoanService)이 findById를 사용하므로 시그니처 변경 시 공유해주세요.
  */
 
 import com.devin.library.member.model.dto.MemberDto;
@@ -38,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberDto login(String id, String pw) throws IllegalArgumentException {
+    public String login(String id, String pw) throws IllegalArgumentException {
         // id로 레포지토리에서 값(id,pw) 가져오기
         MemberDto memberInfo = memberRepository.findById(id);
         // id, pw null 확인, pw비교 후 다르면 -> 아이디 또는 비번이 다릅니다. 다시 시도해주세요.
@@ -46,8 +45,8 @@ public class MemberServiceImpl implements MemberService {
         if (memberInfo == null || !pw.equals(memberInfo.getPw())) {
             throw new IllegalArgumentException("아이디 또는 비밀번호가 다릅니다.. 다시 시도해주세요."); // Controller 전달 +getMessage
         }
-        // 동일하면 회원 정보를 돌려준다.(성공했음을 확인)
-        return memberInfo;
+        // 동일하면 아이디를 돌려준다.(성공했음을 확인) 비번 노출 막기 위함
+        return memberInfo.getId();
     }
 
 }
