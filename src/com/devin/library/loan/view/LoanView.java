@@ -13,6 +13,13 @@ public class LoanView {
     }
 
     public void show(String loginMemberId) {
+
+        /* 로그인 체크 */
+        if(loginMemberId == null) {
+            System.out.println("대출은 로그인 후 가능합니다");
+            return;
+        }
+
         while (true) {
             String menu = """
                     ===== 대출 관리 =====
