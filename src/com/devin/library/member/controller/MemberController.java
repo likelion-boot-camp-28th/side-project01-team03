@@ -25,25 +25,30 @@ public class MemberController {
     }
 
     public void run() {
-        String menu = memberView.memberMenu(); // 멤버 메뉴 불러오기
-        switch (menu) {
-            case "1" : signup(); break;
-            case "2" : login(); break;
-            case "0" : break;
-            default:
-                System.out.println("번호만 입력해주세요.");
-        }
+            String menu = memberView.memberMenu(); // 멤버 메뉴 불러오기
+            switch (menu) {
+                case "1" : signup(); break;
+                case "2" : login(); break;
+                case "0" : return;
+                default:
+                    System.out.println("번호만 입력해주세요.");
+            }
     }
 
     public boolean signup() {
         //signup id,pw 갖고와서 판정/저장/출력
-//        try {
-//            memberService.signup(memberInfo);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        return false;
+        boolean success = false;
+        while (!success) {
+            try {
+                MemberDto memberInfo = memberView.signupPage();
+                memberService.signup(memberInfo);
+                memberView.memberSuccess("회원가입 성공!!");
+                success = true;
+            } catch (Exception e) {
+                memberView.memberFailure(e.getMessage());
+            }
+        }
+        return true; // 왜 true더라
     }
 
     public MemberDto login() {

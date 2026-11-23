@@ -11,6 +11,7 @@ public class MemberView {
     /// 회원관리 메뉴
     public String memberMenu() {
         String menu = """
+                
                 ==== 회원 관리 ====
                 1. 회원 가입
                 2. 로그인
@@ -27,6 +28,7 @@ public class MemberView {
 
     /// 회원가입 -> controller -> service -> repository -> controller
     public MemberDto signupPage() {
+        System.out.println();
         System.out.println("--- 회원가입 ---");
         String id = InputUtil.readLine("아이디 : ");     // 아이디 입력
         String pw = InputUtil.readLine("비밀번호 : ");  // 비번 입력
@@ -35,6 +37,7 @@ public class MemberView {
 
     /// 로그인 -> controller -> service -> -> repository -> controller
     public MemberDto loginPage() {
+        System.out.println();
         System.out.println("--- 로그인 ---");
         String id = InputUtil.readLine("아이디 : ");     // 아이디 입력
         String pw = InputUtil.readLine("비밀번호 : ");  // 비번 입력

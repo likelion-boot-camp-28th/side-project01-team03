@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
         // 중복검사(try-catch연결), exception 이름 바꿔야하나?
         // 지금 멤버인포에 들어있는게 repository에 있니?
         if (memberRepository.existById(memberInfo)) {
-            throw new Exception("이미 존재하는 아이디입니다.");
+            throw new Exception("이미 존재하는 아이디입니다. 다시 시도해주세요.");
         }
         // 없음 -> 저장 -> 가입성공
         memberRepository.saveMember(memberInfo);
