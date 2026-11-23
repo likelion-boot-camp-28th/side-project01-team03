@@ -26,17 +26,22 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean signup(MemberDto memberInfo) throws LibraryException {
-        // 중복검사(try-catch연결)
-        // 지금 멤버인포에 들어있는게 repository에 있니? + " " 빈칸 체크
-        if (memberRepository.existById(memberInfo)) {
+    public void duplicateCheck(String memberId) throws LibraryException {
+        if (memberRepository.existById(memberId)) {
             throw new LibraryException("이미 존재하는 아이디입니다. 다시 시도해주세요."); // Controller 전달 +getMessage
         }
-        // 없음 -> 저장 -> 가입성공
-        memberRepository.saveMember(memberInfo);
-        return true;    // 가입성공을 controller에 전달
     }
 
+    // 저장
+    @Override
+    public void signup(MemberDto memberInfo) throws LibraryException {
+        if (memberRepository.existById(memberInfo.getId())) {
+            throw new LibraryException("이미 존재하는 아이디입니다. 다시 시도해주세요."); // Controller 전달 +getMessage
+        }
+        memberRepository.saveMember(memberInfo);
+    }
+
+    //
     @Override
     public String login(String id, String pw) throws LibraryException {
         // id로 레포지토리에서 값(id,pw) 가져오기
