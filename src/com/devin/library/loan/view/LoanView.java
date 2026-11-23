@@ -47,7 +47,7 @@ public class LoanView {
                     loanController.showReturnBook(loginMemberId, loanId);
                     break;
                 case 3: // 전체 대출 목록
-                    loanController.showAllLoans();
+//                    loanController.showAllLoans();
                     break;
                 case 4: // 내 대출 내역
                     loanController.showLoansByMember(loginMemberId);

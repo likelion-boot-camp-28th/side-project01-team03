@@ -39,12 +39,12 @@ public class LoanController {
         printLoans(loanService.getOverdueLoans(), "연체된 대출이 없습니다");
     }
 
-    /**
-     * 전체 대출 목록 출력 메서드
-     */
-    public void showAllLoans() {
-        printLoans(loanService.getAllLoans(), "대출 도서가 없습니다");
-    }
+//    /**
+//     * 전체 대출 목록 출력 메서드
+//     */
+//    public void showAllLoans() {
+//        printLoans(loanService.getAllLoans(), "대출 도서가 없습니다");
+//    }
 
     /**
      * 내 대출 내역 출력 메서드
