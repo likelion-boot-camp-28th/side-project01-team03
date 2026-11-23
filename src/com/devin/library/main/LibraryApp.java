@@ -34,18 +34,19 @@ public class LibraryApp {
                 System.out.println();
 
                 // 로그인 상태에 따라 제목을 다르게 출력
-                if (loginMemberId == null) {
-                    System.out.println("==== 도서 대출 프로그램 ====");
-                } else {
-                    System.out.println("==== 도서 대출 프로그램 (" + loginMemberId + " 님 이용중) ====");
+                System.out.println("========== 도서 대출 프로그램 ==========");
+                if (loginMemberId != null) {
+                    System.out.println(loginMemberId + " 님 이용중");
                 }
 
                 String menuText = """
-                        1. 회원관리
-                        2. 도서관리
+                        1. 회원 관리
+                        2. 도서 관리
                         3. 대출 관리
                         0. 종료
+                        
                         """;
+                System.out.println();
                 System.out.print(menuText);
                 int menu = InputUtil.readInt("메뉴 선택 : ");
 

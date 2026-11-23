@@ -10,12 +10,13 @@ public class MemberView {
 
     /// 회원관리 메뉴
     public String memberMenu() {
+        System.out.println();
         String menu = """
+                ============== 회원 관리 ===============
                 
-                ==== 회원 관리 ====
                 1. 회원 가입
                 2. 로그인
-                0. 메인 메뉴
+                0. 뒤로 가기
                 """;
         System.out.println(menu);
         return InputUtil.readLine("메뉴 선택 : "); // memberMenu에 값 들어감

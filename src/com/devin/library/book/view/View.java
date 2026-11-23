@@ -14,8 +14,10 @@ public class View {
 
     public void show() {
         while (true) {
+            System.out.println();
             String menuText = """
-                ============도서관리===========
+                ============== 도서 관리 ===============
+                
                 1. 도서 등록
                 2. 도서 목록
                 3. 도서 검색 (제목/저자)
@@ -23,7 +25,7 @@ public class View {
                 0. 뒤로 가기
                 """;
             System.out.println(menuText);
-            int menu = InputUtil.readInt("메뉴 선택 :");
+            int menu = InputUtil.readInt("메뉴 선택 : ");
 
             switch (menu){
                 case 1 :

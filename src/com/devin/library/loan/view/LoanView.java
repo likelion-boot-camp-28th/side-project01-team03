@@ -21,15 +21,17 @@ public class LoanView {
         }
 
         while (true) {
+            System.out.println();
             String menu = """
-                    ===== 대출 관리 =====
-                    1. 도서 대출
-                    2. 도서 반납
-                    3. 전체 대출 목록
-                    4. 내 대출 내역
-                    5. 연체 목록
-                    0. 뒤로가기
-                    ====================
+                 ============== 대출 관리 ===============
+                    
+                 1. 도서 대출
+                 2. 도서 반납
+                 3. 전체 대출 목록
+                 4. 내 대출 내역
+                 5. 연체 목록
+                 0. 뒤로 가기
+                    
                     """;
             System.out.print(menu);
             int menuInput = InputUtil.readInt("메뉴 선택 : ");
