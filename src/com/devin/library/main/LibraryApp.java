@@ -25,7 +25,7 @@ public class LibraryApp {
     private final MemberView memberView = new MemberView();
     private final MemberController memberController = new MemberController(memberService, memberView);
     private final LoanView loanView = new LoanView(bookService);
-
+    private String loginMemberId;
 
     public void run() {
 
@@ -44,9 +44,14 @@ public class LibraryApp {
                 int menu = InputUtil.readInt("메뉴 선택 : ");
 
                 switch (menu) {
-                    case 1 -> memberController.run();
+                    case 1 -> {
+                        String result = memberController.run();   // 일단 임시 변수에 받기
+                        if (result != null) {                     // 로그인에 성공해서 ID가 돌아왔을 때만
+                            loginMemberId = result;               // 필드에 저장
+                        }
+                    }
                     case 2 -> bookView.show();
-                    case 3 -> loanView.show("Test"); // TODO: 로그인 기능 완성 후 로그인한 회원 ID로 변경
+                    case 3 -> loanView.show(loginMemberId);
                     case 0 -> {
                         System.out.println("프로그램을 종료합니다.");
                         return;
