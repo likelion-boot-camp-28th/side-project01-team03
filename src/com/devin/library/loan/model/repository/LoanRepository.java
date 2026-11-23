@@ -38,14 +38,14 @@ public class LoanRepository {
         return loans.get(loanId);
     }
 
-//    /**
-//     * 모든 대출 정보를 불러오는 메서드
-//     *
-//     * @return 전체 대출 목록 (등록 순서)
-//     */
-//    public List<LoanDto> findAll() {
-//        return new ArrayList<LoanDto>(loans.values());  // 대출 정보를 얕은 복사해서 새 List 생성
-//    }
+    /**
+     * 모든 대출 정보를 불러오는 메서드
+     *
+     * @return 전체 대출 목록 (등록 순서)
+     */
+    public List<LoanDto> findAll() {
+        return new ArrayList<LoanDto>(loans.values());  // 대출 정보를 얕은 복사해서 새 List 생성
+    }
 
     /**
      * 특정 회원의 대출 기록만 골라서 리스트로 돌려주는 메서드

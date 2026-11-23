@@ -27,9 +27,8 @@ public class LoanView {
                     
                  1. 도서 대출
                  2. 도서 반납
-                 3. 전체 대출 목록
-                 4. 내 대출 내역
-                 5. 연체 목록
+                 3. 내 대출 내역
+                 4. 연체 목록
                  0. 뒤로 가기
                     
                     """;
@@ -48,13 +47,10 @@ public class LoanView {
                     long loanId = InputUtil.readLong("반납할 대출 ID : ");
                     loanController.showReturnBook(loginMemberId, loanId);
                     break;
-                case 3: // 전체 대출 목록
-//                    loanController.showAllLoans();
-                    break;
-                case 4: // 내 대출 내역
+                case 3: // 내 대출 내역
                     loanController.showLoansByMember(loginMemberId);
                     break;
-                case 5: // 연체 목록
+                case 4: // 연체 목록
                     loanController.showOverdueLoans();
                     break;
                 case 0: // 뒤로가기
