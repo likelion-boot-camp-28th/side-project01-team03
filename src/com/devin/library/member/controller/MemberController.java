@@ -25,27 +25,25 @@ public class MemberController {
     }
 
     public void run() {
-            String menu = memberView.memberMenu(); // 멤버 메뉴 불러오기
-            switch (menu) {
-                case "1" : signup(); break;
-                case "2" : login(); break;
-                case "0" : return;
-                default:
-                    System.out.println("번호만 입력해주세요.");
-            }
+        String menu = memberView.memberMenu(); // 멤버 메뉴 불러오기
+        switch (menu) {
+            case "1": signup(); break;
+            case "2": login(); break;
+            case "0": return;
+            default: System.out.println("번호만 입력해주세요.");
+        }
     }
 
     public boolean signup() {
-        //signup id,pw 갖고와서 판정/저장/출력
-        boolean success = false;
+        boolean success = false;        // !false에서 success true까지 반복
         while (!success) {
             try {
-                MemberDto memberInfo = memberView.signupPage();
-                memberService.signup(memberInfo);
-                memberView.memberSuccess("회원가입 성공!!");
+                MemberDto memberInfo = memberView.signupPage();             // 회원가입페이지 부르고 값 저장
+                memberService.signup(memberInfo);                           // 값을 서비스에서 검사
+                memberView.memberSuccess("회원가입 성공!!");      // 성공 시 view성공페이지 출력
                 success = true;
-            } catch (Exception e) {
-                memberView.memberFailure(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                memberView.memberFailure(e.getMessage());                   // 실패 시 view 실패페이지 출력
             }
         }
         return true; // 왜 true더라
