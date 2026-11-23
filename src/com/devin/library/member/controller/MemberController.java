@@ -20,14 +20,15 @@ public class MemberController {
     // service, view 연결용
     private MemberService memberService;
     private MemberView memberView;
+    private String loginMember = null;  // loginMember run 밖에서 연결
 
     public MemberController(MemberService memberService, MemberView memberView) {
         this.memberService = memberService;
         this.memberView = memberView;
     }
 
+    /// 회원관리 메인메뉴
     public String run() {
-        String loginMember = null;
         while (true) {
             String menu = memberView.memberMenu(); // 멤버 메뉴 불러오기
             switch (menu) {
@@ -46,6 +47,7 @@ public class MemberController {
         }
     }
 
+    /// 회원가입 페이지
     public boolean signup() {
         boolean success = false;        // !false에서 success true까지 반복
         while (!success) {
@@ -61,6 +63,7 @@ public class MemberController {
         return true; // 로그인 확인됨
     }
 
+    /// 로그인 페이지
     public String login() {
         // login id, pw갖고와서 판정/출력
         try {
@@ -73,5 +76,15 @@ public class MemberController {
             return null;
         }
     }
+
+//    // 로그인 한 Id 돌려주는 메서드
+//    public String getLoginMember() {
+//        return loginMember;
+//    }
+//
+//    // 이용중, 이용안함 확인용 boolean 메서드
+//    public boolean isLogin() {
+//        return loginMember != null;
+//    }
 
 }
