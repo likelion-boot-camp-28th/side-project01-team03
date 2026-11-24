@@ -42,5 +42,8 @@ public class BookController {
             System.out.println(book);
         }
     }
+    public boolean checkPassword(String password){
+        return bookService.checkPassword(password);
+    }
 
 }
