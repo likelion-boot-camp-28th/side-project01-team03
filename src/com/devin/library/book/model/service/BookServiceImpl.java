@@ -11,6 +11,7 @@ public class BookServiceImpl implements BookService {
     public String FilePath = "src/com/devin/library/data/books.txt";
     private List<Bookdto> books = new ArrayList<>();
     private int nextId = 1;
+    private String  adminPassword = "1234";
 
     public BookServiceImpl() {
         loadFile();
@@ -31,7 +32,7 @@ public class BookServiceImpl implements BookService {
     public Bookdto register(String title, String author) {
         Bookdto book = new Bookdto(nextId, title, author, false);
         nextId++;
-        books.add(book);        // 중복id가 들어갈수있으니 나중에 조치
+        books.add(book);
         saveFile();
         return book;
     }
@@ -119,5 +120,10 @@ public class BookServiceImpl implements BookService {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean checkPassword(String password) {
+        return password.equals(adminPassword);
     }
 }

@@ -41,6 +41,11 @@ public class View {
                     bookController.search(keyword);
                     break;
                 case 4 :
+                    String password = InputUtil.readNonBlank("비밀번호를 입력해 주세요 :");
+                    if(!bookController.checkPassword(password)){
+                        System.out.println("비밀번호가 틀렸습니다");
+                        break;
+                    }
                     bookController.findAll();
                     int id = InputUtil.readInt("삭제할 도서 번호 :");
                     bookController.delete(id);
