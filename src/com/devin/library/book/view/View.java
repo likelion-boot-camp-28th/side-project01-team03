@@ -47,7 +47,11 @@ public class View {
                         break;
                     }
                     bookController.findAll();
+                    System.out.println("0. 뒤로 가기");
                     int id = InputUtil.readInt("삭제할 도서 번호 :");
+                    if(id == 0){
+                        break;
+                    }
                     bookController.delete(id);
                     break;
                 case 0 :
