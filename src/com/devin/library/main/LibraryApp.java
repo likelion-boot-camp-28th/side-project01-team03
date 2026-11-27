@@ -34,24 +34,25 @@ public class LibraryApp {
                 System.out.println();
 
                 // 로그인 상태에 따라 제목을 다르게 출력
-                if (loginMemberId == null) {
-                    System.out.println("==== 도서 대출 프로그램 ====");
-                } else {
-                    System.out.println("==== 도서 대출 프로그램 (" + loginMemberId + " 님 이용중) ====");
+                System.out.println("\u001B[36m========== 도서 대출 프로그램 ==========\u001B[0m");
+                if (loginMemberId != null) {
+                    System.out.println("\u001B[33m" + loginMemberId + " 님 이용중\u001B[0m");
                 }
 
                 String menuText = """
-                        1. 회원관리
-                        2. 도서관리
+                        1. 회원 관리
+                        2. 도서 관리
                         3. 대출 관리
                         0. 종료
+                        
                         """;
+                System.out.println();
                 System.out.print(menuText);
                 int menu = InputUtil.readInt("메뉴 선택 : ");
 
                 switch (menu) {
                     case 1 -> {
-                        String result = memberController.run();   // 일단 임시 변수에 받기
+                        String result = memberController.show();   // 일단 임시 변수에 받기
                         if (result != null) {                     // 로그인에 성공해서 ID가 돌아왔을 때만
                             loginMemberId = result;               // 필드에 저장
                         }
@@ -62,16 +63,16 @@ public class LibraryApp {
                         System.out.println("프로그램을 종료합니다.");
                         return;
                     }
-                    default -> System.out.println("잘못된 메뉴입니다.");
+                    default -> System.out.println("\u001B[31m잘못된 메뉴입니다.\u001B[0m");
                 }
 
             } catch (LibraryException e) {
-                System.out.println(e.getMessage());
+                System.out.println("\u001B[31m" + e.getMessage() + "\u001B[0m");
             } catch (NoSuchElementException e) {
-                System.out.println("입력이 종료되어 프로그램을 끝냅니다.");
+                System.out.println("\u001B[31m입력이 종료되어 프로그램을 끝냅니다.\u001B[0m");
                 return;
             } catch (RuntimeException e) {
-                System.out.println("알 수 없는 오류가 발생했습니다: " + e.getMessage());
+                System.out.println("\u001B[31m알 수 없는 오류가 발생했습니다: " + e.getMessage() + "\u001B[0m");
             }
         }
     }

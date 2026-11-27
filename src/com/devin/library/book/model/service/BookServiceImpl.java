@@ -11,6 +11,7 @@ public class BookServiceImpl implements BookService {
     public String FilePath = "src/com/devin/library/data/books.txt";
     private List<Bookdto> books = new ArrayList<>();
     private int nextId = 1;
+    private String  adminPassword = "1234";
 
     public BookServiceImpl() {
         loadFile();
@@ -31,7 +32,7 @@ public class BookServiceImpl implements BookService {
     public Bookdto register(String title, String author) {
         Bookdto book = new Bookdto(nextId, title, author, false);
         nextId++;
-        books.add(book);        // 중복id가 들어갈수있으니 나중에 조치
+        books.add(book);
         saveFile();
         return book;
     }
@@ -89,9 +90,9 @@ public class BookServiceImpl implements BookService {
                 books.add(new Bookdto(id, title, author, borrowed));
             }
         } catch (FileNotFoundException e) {
-            System.out.println("파일이 없습니다.");
+            System.out.println("\u001B[31m파일이 없습니다.\u001B[0m");
         } catch (IOException e) {
-            System.out.println("파일을 읽지 못했습니다");
+            System.out.println("\u001B[31m파일을 읽지 못했습니다\u001B[0m");
         } finally {
             try {
                 br.close();
@@ -109,7 +110,7 @@ public class BookServiceImpl implements BookService {
                 bw.write(book.getId() + "," + book.getTilte() + "," + book.getAuthor() + "," + book.isBorrowed() + "\n");
             }
         } catch (IOException e) {
-            System.out.println("파일 저장 실패");
+            System.out.println("\u001B[31m파일 저장 실패\u001B[0m");
         } finally {
             if (bw != null) {
                 try {
@@ -119,5 +120,10 @@ public class BookServiceImpl implements BookService {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean checkPassword(String password) {
+        return password.equals(adminPassword);
     }
 }

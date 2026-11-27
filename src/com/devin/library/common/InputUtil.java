@@ -17,7 +17,7 @@ public class InputUtil {
         while (true) {
             String input = readLine(prompt);
             if (input.isEmpty()) {
-                System.out.println("값을 입력해주세요.");
+                System.out.println("\u001B[31m값을 입력해주세요.\u001B[0m");
             }else {
                 return input;
             }
@@ -32,7 +32,7 @@ public class InputUtil {
             } else if (input.equalsIgnoreCase("n")) {
                 return false;
             } else {
-                System.out.println("y 또는 n을 입력해주세요.");
+                System.out.println("\u001B[31my 또는 n을 입력해주세요.\u001B[0m");
             }
         }
     }
@@ -48,7 +48,7 @@ public class InputUtil {
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.println("숫자를 입력해주세요.");
+                System.out.println("\u001B[31m숫자를 입력해주세요.\u001B[0m");
             }
         }
     }
@@ -59,7 +59,7 @@ public class InputUtil {
             try {
                 return Long.parseLong(input);
             } catch (NumberFormatException e) {
-                System.out.println("숫자를 입력해주세요.");
+                System.out.println("\u001B[31m숫자를 입력해주세요.\u001B[0m");
             }
         }
     }

@@ -16,49 +16,55 @@ public class LoanView {
 
         /* 로그인 체크 */
         if(loginMemberId == null) {
-            System.out.println("대출은 로그인 후 가능합니다");
+            System.out.println("\u001B[31m대출은 로그인 후 가능합니다\u001B[0m");
             return;
         }
 
         while (true) {
+            System.out.println();
             String menu = """
-                    ===== 대출 관리 =====
-                    1. 도서 대출
-                    2. 도서 반납
-                    3. 전체 대출 목록
-                    4. 내 대출 내역
-                    5. 연체 목록
-                    0. 뒤로가기
-                    ====================
+                 \u001B[36m============== 대출 관리 ===============\u001B[0m
+                    
+                 1. 도서 대출
+                 2. 도서 반납
+                 3. 내 대출 내역
+                 4. 연체 목록
+                 0. 뒤로 가기
+                    
                     """;
             System.out.print(menu);
             int menuInput = InputUtil.readInt("메뉴 선택 : ");
 
             switch (menuInput) {
                 case 1: // 도서 대출
+                    System.out.println();
+                    System.out.println("-------------- 도서 대출 ---------------");
                     int bookId = InputUtil.readInt("대출할 도서 번호 : ");
                     loanController.loanBook(loginMemberId, bookId);
                     break;
                 case 2: // 도서 반납
+                    System.out.println();
+                    System.out.println("-------------- 도서 반납 ---------------");
                     if(!loanController.showMyActiveLoans(loginMemberId)) {
                         break;
                     }
                     long loanId = InputUtil.readLong("반납할 대출 ID : ");
                     loanController.showReturnBook(loginMemberId, loanId);
                     break;
-                case 3: // 전체 대출 목록
-                    loanController.showAllLoans();
-                    break;
-                case 4: // 내 대출 내역
+                case 3: // 내 대출 내역
+                    System.out.println();
+                    System.out.println("------------- 내 대출 내역 -------------");
                     loanController.showLoansByMember(loginMemberId);
                     break;
-                case 5: // 연체 목록
+                case 4: // 연체 목록
+                    System.out.println();
+                    System.out.println("-------------- 연체 목록 ---------------");
                     loanController.showOverdueLoans();
                     break;
                 case 0: // 뒤로가기
                     return;
                 default:
-                    System.out.println("잘못된 메뉴입니다");
+                    System.out.println("\u001B[31m잘못된 메뉴입니다.\u001B[0m");
                     break;
             }
         }

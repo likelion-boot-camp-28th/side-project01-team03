@@ -39,12 +39,12 @@ public class LoanController {
         printLoans(loanService.getOverdueLoans(), "연체된 대출이 없습니다");
     }
 
-    /**
-     * 전체 대출 목록 출력 메서드
-     */
-    public void showAllLoans() {
-        printLoans(loanService.getAllLoans(), "대출 도서가 없습니다");
-    }
+//    /**
+//     * 전체 대출 목록 출력 메서드
+//     */
+//    public void showAllLoans() {
+//        printLoans(loanService.getAllLoans(), "대출 도서가 없습니다");
+//    }
 
     /**
      * 내 대출 내역 출력 메서드
@@ -79,10 +79,10 @@ public class LoanController {
                 book.setBorrowed(false);
             }
 
-            System.out.println("반납 완료 : " + loan.getBookName() + " (반납일 " + loan.getReturnDate() + ")");
+            System.out.println("\u001B[32m반납 완료 : " + loan.getBookName() + " (반납일 " + loan.getReturnDate() + ")\u001B[0m");
 
         } catch (LibraryException e) {
-            System.out.println(e.getMessage());
+            System.out.println("\u001B[31m" + e.getMessage() + "\u001B[0m");
         }
 
 
@@ -98,17 +98,17 @@ public class LoanController {
             Bookdto book = bookService.findById(bookId);
 
             if(book == null) {
-                System.out.println("없는 도서 번호 입니다");
+                System.out.println("\u001B[31m없는 도서 번호 입니다\u001B[0m");
                 return;
             }
 
             LoanDto loan = loanService.loanBook(memberId, bookId, book.getTilte(), book.getAuthor());
             book.setBorrowed(true);
 
-            System.out.println("대출 완료 : " + loan.getBookName() + " (반납 예정일 : " + loan.getDueDate() + ")");
+            System.out.println("\u001B[32m대출 완료 : " + loan.getBookName() + " (반납 예정일 : " + loan.getDueDate() + ")\u001B[0m");
 
         } catch (LibraryException e) {
-            System.out.println(e.getMessage());
+            System.out.println("\u001B[31m" + e.getMessage() + "\u001B[0m");
         }
     }
 
