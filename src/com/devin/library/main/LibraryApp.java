@@ -63,16 +63,16 @@ public class LibraryApp {
                         System.out.println("프로그램을 종료합니다.");
                         return;
                     }
-                    default -> System.out.println("잘못된 메뉴입니다.");
+                    default -> System.out.println("\u001B[31m잘못된 메뉴입니다.\u001B[0m");
                 }
 
             } catch (LibraryException e) {
-                System.out.println(e.getMessage());
+                System.out.println("\u001B[31m" + e.getMessage() + "\u001B[0m");
             } catch (NoSuchElementException e) {
-                System.out.println("입력이 종료되어 프로그램을 끝냅니다.");
+                System.out.println("\u001B[31m입력이 종료되어 프로그램을 끝냅니다.\u001B[0m");
                 return;
             } catch (RuntimeException e) {
-                System.out.println("알 수 없는 오류가 발생했습니다: " + e.getMessage());
+                System.out.println("\u001B[31m알 수 없는 오류가 발생했습니다: " + e.getMessage() + "\u001B[0m");
             }
         }
     }
