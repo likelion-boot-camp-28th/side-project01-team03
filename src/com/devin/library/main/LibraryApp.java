@@ -52,7 +52,7 @@ public class LibraryApp {
 
                 switch (menu) {
                     case 1 -> {
-                        String result = memberController.run();   // 일단 임시 변수에 받기
+                        String result = memberController.show();   // 일단 임시 변수에 받기
                         if (result != null) {                     // 로그인에 성공해서 ID가 돌아왔을 때만
                             loginMemberId = result;               // 필드에 저장
                         }

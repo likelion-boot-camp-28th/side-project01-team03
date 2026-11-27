@@ -5,86 +5,73 @@ import com.devin.library.member.model.dto.MemberDto;
 import com.devin.library.member.model.service.MemberService;
 import com.devin.library.member.view.MemberView;
 
-// view 입력값 -> service 전달 -> try/catch로 성공/실패 -> view 출력 전달
-
-// 중복아이디 찾기 -> repository에 아이디가 있는지로 판단한다.(Repository-맵-키값id로 찾는 메서드 사용)
-// 있음 -> Controller에서 try-catch  -> Service에서 중복검사 >
-// 있음 -> throw Exception(무슨익셉션으로?) -> catch view출력문("중복아이디 있어요") Fail
-// 없음 -> repository 저장메서드 사용 -> try 마지막 View출력문("가입되었습니다.) Success
-
-// 로그인 판정 -> Repository-Map에서 id(키값)으로 아이디비번 가져오기 -> 꺼낸 후 판단(null(id 다름), 비번 다름, 전부 동일)
-
-// id만 전달용으로 String 쓰기
-
 public class MemberController {
 
-    // service, view 연결용
     private final MemberService memberService;
     private final MemberView memberView;
-    private String loginId = null;  // run 밖에서 연결?
+    private String loginId = null;
 
     public MemberController(MemberService memberService, MemberView memberView) {
         this.memberService = memberService;
         this.memberView = memberView;
     }
 
-    /// 회원관리 메인메뉴
-    public String run() {
+    /**
+     * @return 회원 아이디, 비로그인 시 null
+     */
+    public String show() {
         while (true) {
-            String menu = memberView.memberMenu(); // 멤버 메뉴 불러오기
+            String menu = memberView.memberMenu();
             switch (menu) {
                 case "1":
                     signup();
                     break;
-                // 실패해도 이전 로그인이 null이 되지않게 하려면 "성공했을 때만 loginMember를 바꾸기"
                 case "2": {
                     if (loginId != null) {
-                        memberView.memberFailure("이미 로그인 되어있습니다.");             // 로그인 막기
-                        break;                      // 회원메뉴로
+                        memberView.memberFailure("이미 로그인 되어있습니다.");
+                        break;
                     }
                     String temp = login();
                     if (temp != null) {
                         loginId = temp;
-                        return loginId;             // 메인 메뉴로
+                        return loginId;
                     }
-                    break;                          // 회원 메뉴로
+                    break;
                 }
                 case "0":
-                    return loginId;   // 메인에 정보를 계속 전달
+                    return loginId;
                 default:
                     memberView.memberFailure("잘못된 메뉴입니다.");
             }
         }
     }
 
-    /// 회원가입 페이지
     public void signup() {
         try {
-            String signId = memberView.signupId();             // 아이디
-            memberService.duplicateCheck(signId);               // 중복체크
-            String signPw = memberView.signupPw();                  // 비번
-            MemberDto memberInfo = new MemberDto(signId, signPw);       // 둘다 넣기
-            memberService.signup(memberInfo);                           // 저장
-            memberView.memberSuccess("회원가입 성공!!");      // 성공 시 view성공페이지 출력
+            String signId = memberView.signupId();
+            memberService.duplicateCheck(signId);
+            String signPw = memberView.signupPw();
+            MemberDto memberInfo = new MemberDto(signId, signPw);
+            memberService.signup(memberInfo);
+            memberView.memberSuccess("회원가입 성공!!");
 
         } catch (LibraryException e) {
-            memberView.memberFailure(e.getMessage());                   // 실패 시 view 실패페이지 출력
+            memberView.memberFailure(e.getMessage());
         }
     }
 
-    /// 로그인 페이지
+    /**
+     * @return 로그인 아이디, 실패 시 null
+     */
     public String login() {
-        // login id, pw갖고와서 판정/출력
         try {
-            MemberDto memberInfo = memberView.loginPage();                  // 로그인페이지 부르고 값 저장
-            String loginMember = memberService.login(memberInfo.getId(), memberInfo.getPw());    // 값을 서비스에서 검사하고 돌려받은 값을 회원정보로 넣기
-            memberView.memberSuccess("로그인 성공!!");            // 성공 시 view성공페이지 출력
-            return loginMember;                                             // id 돌려주기
+            MemberDto memberInfo = memberView.loginPage();
+            String loginMember = memberService.login(memberInfo.getId(), memberInfo.getPw());
+            memberView.memberSuccess("로그인 성공!!");
+            return loginMember;
         } catch (LibraryException e) {
-            memberView.memberFailure(e.getMessage());                      // 실패 시 view 실패페이지 출력
+            memberView.memberFailure(e.getMessage());
             return null;
         }
     }
-
-
 }
