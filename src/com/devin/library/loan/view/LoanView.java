@@ -16,7 +16,7 @@ public class LoanView {
 
         /* 로그인 체크 */
         if(loginMemberId == null) {
-            System.out.println("대출은 로그인 후 가능합니다");
+            System.out.println("\u001B[31m대출은 로그인 후 가능합니다\u001B[0m");
             return;
         }
 
@@ -37,10 +37,14 @@ public class LoanView {
 
             switch (menuInput) {
                 case 1: // 도서 대출
+                    System.out.println();
+                    System.out.println("-------------- 도서 대출 ---------------");
                     int bookId = InputUtil.readInt("대출할 도서 번호 : ");
                     loanController.loanBook(loginMemberId, bookId);
                     break;
                 case 2: // 도서 반납
+                    System.out.println();
+                    System.out.println("-------------- 도서 반납 ---------------");
                     if(!loanController.showMyActiveLoans(loginMemberId)) {
                         break;
                     }
@@ -48,15 +52,19 @@ public class LoanView {
                     loanController.showReturnBook(loginMemberId, loanId);
                     break;
                 case 3: // 내 대출 내역
+                    System.out.println();
+                    System.out.println("------------- 내 대출 내역 -------------");
                     loanController.showLoansByMember(loginMemberId);
                     break;
                 case 4: // 연체 목록
+                    System.out.println();
+                    System.out.println("-------------- 연체 목록 ---------------");
                     loanController.showOverdueLoans();
                     break;
                 case 0: // 뒤로가기
                     return;
                 default:
-                    System.out.println("잘못된 메뉴입니다");
+                    System.out.println("\u001B[31m잘못된 메뉴입니다.\u001B[0m");
                     break;
             }
         }

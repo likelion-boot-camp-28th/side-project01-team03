@@ -90,9 +90,9 @@ public class BookServiceImpl implements BookService {
                 books.add(new Bookdto(id, title, author, borrowed));
             }
         } catch (FileNotFoundException e) {
-            System.out.println("파일이 없습니다.");
+            System.out.println("\u001B[31m파일이 없습니다.\u001B[0m");
         } catch (IOException e) {
-            System.out.println("파일을 읽지 못했습니다");
+            System.out.println("\u001B[31m파일을 읽지 못했습니다\u001B[0m");
         } finally {
             try {
                 br.close();
@@ -110,7 +110,7 @@ public class BookServiceImpl implements BookService {
                 bw.write(book.getId() + "," + book.getTilte() + "," + book.getAuthor() + "," + book.isBorrowed() + "\n");
             }
         } catch (IOException e) {
-            System.out.println("파일 저장 실패");
+            System.out.println("\u001B[31m파일 저장 실패\u001B[0m");
         } finally {
             if (bw != null) {
                 try {

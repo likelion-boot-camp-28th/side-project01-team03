@@ -29,26 +29,34 @@ public class View {
 
             switch (menu){
                 case 1 :
-                    String title = InputUtil.readLine("제목 :");
-                    String author = InputUtil.readLine("저자 :");
+                    System.out.println();
+                    System.out.println("-------------- 도서 등록 ---------------");
+                    String title = InputUtil.readLine("제목 : ");
+                    String author = InputUtil.readLine("저자 : ");
                     bookController.registerBook(title,author);
                     break;
                 case 2:
+                    System.out.println();
+                    System.out.println("-------------- 도서 목록 ---------------");
                     bookController.findAll();
                     break;
                 case 3 :
-                    String keyword = InputUtil.readLine("검색어 :");
+                    System.out.println();
+                    System.out.println("-------------- 도서 검색 ---------------");
+                    String keyword = InputUtil.readLine("검색어 : ");
                     bookController.search(keyword);
                     break;
                 case 4 :
-                    String password = InputUtil.readNonBlank("비밀번호를 입력해 주세요 :");
+                    System.out.println();
+                    System.out.println("-------------- 도서 삭제 ---------------");
+                    String password = InputUtil.readNonBlank("비밀번호를 입력해 주세요 : ");
                     if(!bookController.checkPassword(password)){
-                        System.out.println("비밀번호가 틀렸습니다");
+                        System.out.println("\u001B[31m비밀번호가 틀렸습니다\u001B[0m");
                         break;
                     }
                     bookController.findAll();
                     System.out.println("0. 뒤로 가기");
-                    int id = InputUtil.readInt("삭제할 도서 번호 :");
+                    int id = InputUtil.readInt("삭제할 도서 번호 : ");
                     if(id == 0){
                         break;
                     }
@@ -56,7 +64,7 @@ public class View {
                     break;
                 case 0 :
                         return;
-                default : System.out.println("잘못된 메뉴입니다.");
+                default : System.out.println("\u001B[31m잘못된 메뉴입니다.\u001B[0m");
             }
 
         }

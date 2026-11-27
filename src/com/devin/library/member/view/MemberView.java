@@ -21,7 +21,7 @@ public class MemberView {
     // 아이디 입력 후 바로 중복 확인하기 위해 비밀번호와 분리함
     public String signupId() {
         System.out.println();
-        System.out.println("--- 회원가입 ---");
+        System.out.println("--------------- 회원가입 ---------------");
         return InputUtil.readNonBlank("아이디 : ");
     }
 
@@ -31,18 +31,18 @@ public class MemberView {
 
     public MemberDto loginPage() {
         System.out.println();
-        System.out.println("--- 로그인 ---");
+        System.out.println("---------------- 로그인 ----------------");
         String id = InputUtil.readNonBlank("아이디 : ");
         String pw = InputUtil.readNonBlank("비밀번호 : ");
         return new MemberDto(id, pw);
     }
 
     public void memberSuccess(String sentence) {
-        System.out.println(sentence);
+        System.out.println("\u001B[32m" + sentence + "\u001B[0m");
     }
 
     public void memberFailure(String sentence) {
-        System.out.println(sentence);
+        System.out.println("\u001B[31m" + sentence + "\u001B[0m");
     }
 
 }

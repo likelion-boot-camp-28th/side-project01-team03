@@ -15,7 +15,7 @@ public class BookController {
 
     public void registerBook(String title, String author) { //책등록 출력
         Bookdto book = bookService.register(title, author);
-        System.out.println("등록 되었습니다" + book);
+        System.out.println("\u001B[32m등록되었습니다: " + book + "\u001B[0m");
     }
 
     public void findAll() {
